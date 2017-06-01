@@ -23,8 +23,11 @@ else()
     set (CMAKE_C_STANDARD 99)
     set (CMAKE_CXX_STANDARD 11)
 endif()
-    include(FindOpenSSL)
 
+    include(FindOpenSSL)
+if(NOT OPENSSL_FOUND)
+    message(FATAL_ERROR, "No openssl found - please install")
+endif()
     set(_uastack_src
         core/opcua_buffer.c
         core/opcua_core.c

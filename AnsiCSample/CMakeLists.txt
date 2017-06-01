@@ -24,9 +24,6 @@ else()
 endif()
 
 if(WIN32)
-    #
-    # Direct msvc target to be linked with static crt
-    #
     if(MSVC)
         if(not ${link_dynamic_msvcrt})
             foreach(flag_var
@@ -64,6 +61,7 @@ if(WIN32)
         endif()
     endif()
 endif()
+
     add_executable(AnsiCServer 
         ansicservermain.c
         browsenext.c
@@ -71,9 +69,11 @@ endif()
         init_variables_of_addressspace.c
         readservice.c
     )
+    set_target_properties(AnsiCServer PROPERTIES FOLDER "AnsiCSample")
     target_link_libraries(AnsiCServer PUBLIC uastack)
+    
 if(WIN32)
-    # Place here the install rule for win32
+    # todo
 else()
     install (TARGETS AnsiCServer LIBRARY DESTINATION bin)
 endif()
