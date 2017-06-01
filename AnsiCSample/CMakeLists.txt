@@ -71,9 +71,3 @@ endif()
     )
     set_target_properties(AnsiCServer PROPERTIES FOLDER "AnsiCSample")
     target_link_libraries(AnsiCServer PUBLIC uastack)
-    
-if(WIN32)
-    # todo
-else()
-    install (TARGETS AnsiCServer LIBRARY DESTINATION bin)
-endif()

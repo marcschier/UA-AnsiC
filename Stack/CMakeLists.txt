@@ -154,6 +154,7 @@ else()
     )
 
     set(CMAKE_THREAD_PREFER_PTHREAD 1)
+    set(THREADS_PREFER_PTHREAD_FLAG 1)
     include(FindThreads)
 endif()
     add_library(uastack STATIC ${_uastack_src})
@@ -190,11 +191,8 @@ if(WIN32)
     )
 else()
     target_include_directories(uastack PUBLIC platforms/linux)
-    target_compile_definitions(uastack
-        PUBLIC _POSIX_C_SOURCE=200112L
-        PUBLIC HAVE_IN6_U=1
-    )
-    target_link_libraries(uastack PUBLIC pthread m)
+    target_compile_definitions(uastack PUBLIC _GNU_SOURCE)
+    target_link_libraries(uastack PUBLIC pthread)
 endif()
     target_link_libraries(uastack PUBLIC ${OPENSSL_LIBRARIES})
 
