@@ -12,7 +12,7 @@ else()
 endif()
     include(FindOpenSSL)
 
-    set(_ua_stack_src
+    set(_uastack_src
         core/opcua_buffer.c
         core/opcua_core.c
         core/opcua_datetime.c
@@ -69,7 +69,7 @@ endif()
     )
 
 if(WIN32)
-    set(_ua_stack_src ${_ua_stack_src}
+    set(_uastack_src ${_uastack_src}
         platforms/win32/opcua_p_binary.c
         platforms/win32/opcua_p_cryptofactory.c
         platforms/win32/opcua_p_datetime.c
@@ -105,7 +105,7 @@ else()
     include(CheckIncludeFile)
     include(FindPkgConfig)
  
-    set(_ua_stack_src ${_ua_stack_src}
+    set(_uastack_src ${_uastack_src}
         platforms/linux/opcua_p_binary.c
         platforms/linux/opcua_p_cryptofactory.c
         platforms/linux/opcua_p_datetime.c
@@ -140,7 +140,7 @@ else()
     set(CMAKE_THREAD_PREFER_PTHREAD 1)
     include(FindThreads)
 endif()
-    add_library(uastack STATIC ${_ua_stack_src})
+    add_library(uastack STATIC ${_uastack_src})
     target_include_directories(uastack
         PUBLIC core
         PUBLIC proxystub/clientproxy
