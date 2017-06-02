@@ -1,4 +1,4 @@
-# Copyright (c) 1996-2017, OPC Foundation. All rights reserved.
+# Copyright (c) 1996-2016, OPC Foundation. All rights reserved.
 #
 #   The source code in this file is covered under a dual-license scenario:
 #     - RCL: for OPC Foundation members in good-standing
@@ -13,27 +13,24 @@
 #   but WITHOUT ANY WARRANTY; without even the implied warranty of
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# ignore generated files
+cmake_minimum_required(VERSION 2.8.11)
 
-*/linux/*
-*/win32/*
-*/VS2013/*
-*/Debug/*
-*/Release/*
-build/**
-openssl*/*
-*.o
-*.a
-*.lib
-*.obj
-*.db
-*.opendb
-*.log
-*.tlog
-*.idb
-*.suo
-*.pdb
-*.exe
-*.ilk
-*.iobj
-*.ipdb
+project(UA-AnsiC)
+include(CMakeToolsHelpers OPTIONAL)
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+set(_PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "Root" FORCE)
+
+enable_testing()
+
+#
+# output paths
+#
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
+
+add_subdirectory(Stack)
+add_subdirectory(AnsiCSample)
